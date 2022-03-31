@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using Prueba.NET.Models;
+@using GridMvc.Html;
+@model IEnumerable<Prueba.NET.Models.Datos_GetAll_Result>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+
+
+<style type="text/css">
+
+    table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+
+    .titulo {
+        text-align: left;
+        text-decoration-style: solid;
+    }
+
+    table th {
+        background-color: #B8DBFD;
+        color: #000000;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    table th, table td {
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+    table, table table td {
+        border: 0px solid #ccc;
+    }
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Consulta</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="titulo">Consulta Datos y Cancelaciones</h1>
+    </div>
+    <br />
+    @using (Html.BeginForm("Consulta", "Net", FormMethod.Post))
+    {
+        <div class="container-fluid">
+            <div>
+                <span>Cedula a Consultar:</span> @Html.TextBox("documento")
+                <input type="submit" value="Buscar" />
+            </div>
+            <br />
+            <br />
+            @if (Model == null)
+            {
+                <h3>No existen datos.</h3>
+            }
+            else
+            {
+                foreach (Datos_GetAll_Result customer in Model)
+                {
+                    <h2>Datos</h2>
+                    <table class="table-hover" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th>OC</th>
+                            <th>F12</th>
+                            <th>SKU</th>
+                            <th>CC</th>
+                            <th>ESTADO</th>
+                        </tr>
+
+                        <tr>
+                            <td>@customer.OC</td>
+                            <td>@customer.F12</td>
+                            <td>@customer.SKU</td>
+                            <td>@customer.CC</td>
+                            <td>@customer.ESTADO</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <h2>Cancelaciones</h2>
+                    <table>
+                        <tr>
+                            <th>OC</th>
+                            <th>PRECIO_DESPACHO</th>
+                            <th>MONTO_TOTAL_LINEA</th>
+                            <th>SKU_LINEA</th>
+                            <th>F12</th>
+                            <th>TIPO_ABASTECIMIENTO</th>
+                            <th>DUP_OC</th>
+                            <th>DUP_F12</th>
+                            <th>ESTADO_LINEA</th>
+                            <th>ESTADO_ORDEN_OMS</th>
+                            <th>ESTADO_CD</th>
+                        </tr>
+                        <tr>
+                            <td>@customer.OC_C</td>
+                            <td>@customer.PRECIO_DESPACHO</td>
+                            <td>@customer.MONTO_TOTAL_LINEA</td>
+                            <td>@customer.SKU_LINEA</td>
+                            <td>@customer.F12_C</td>
+                            <td>@customer.TIPO_ABASTECIMIENTO</td>
+                            <td>@customer.DUP_OC</td>
+                            <td>@customer.DUP_F12</td>
+                            <td>@customer.ESTADO_LINEA</td>
+                            <td>@customer.ESTADO_ORDEN_OMS</td>
+                            <td>@customer.ESTADO_CD</td>
+                        </tr>
+                    </table>
+                }
+
+            }
+
+
+        </div>
+    }
+
+</body>
+</html>

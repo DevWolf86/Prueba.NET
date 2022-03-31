@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cancelaciones">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRECIO_DESPACHO" Type="varchar" MaxLength="50" />
+          <Property Name="MONTO_TOTAL_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="SKU_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="F12" Type="varchar" MaxLength="50" />
+          <Property Name="TIPO_ABASTECIMIENTO" Type="varchar" MaxLength="50" />
+          <Property Name="DUP_OC" Type="varchar" MaxLength="50" />
+          <Property Name="DUP_F12" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_ORDEN_OMS" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_CD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="F12" Type="varchar" MaxLength="50" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="CC" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Datos_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Test">
+          <Parameter Name="documento" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="Cancelaciones" EntityType="Self.Cancelaciones" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" Schema="Test" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cancelaciones">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO_DESPACHO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO_TOTAL_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SKU_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_ABASTECIMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUP_OC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUP_F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_ORDEN_OMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_CD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="PruebaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cancelaciones" EntityType="Self.Cancelaciones" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" />
+          <FunctionImport Name="Datos_GetAll" EntitySet="Datos" ReturnType="Collection(TestModel.Datos)" >
+          <Parameter Name="documento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Datos_GetAll_New" ReturnType="Collection(TestModel.Datos_GetAll_Result)" >
+          <Parameter Name="documento" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Datos_GetAll_Result">
+          <Property Type="String" Name="OC" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="F12" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SKU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTADO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRECIO_DESPACHO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MONTO_TOTAL_LINEA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SKU_LINEA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TIPO_ABASTECIMIENTO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DUP_OC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DUP_F12" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTADO_LINEA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTADO_ORDEN_OMS" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ESTADO_CD" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OC_C" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="F12_C" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="PruebaEntities">
+          <EntitySetMapping Name="Cancelaciones">
+            <EntityTypeMapping TypeName="TestModel.Cancelaciones">
+              <MappingFragment StoreEntitySet="Cancelaciones">
+                <ScalarProperty Name="OC" ColumnName="OC" />
+                <ScalarProperty Name="PRECIO_DESPACHO" ColumnName="PRECIO_DESPACHO" />
+                <ScalarProperty Name="MONTO_TOTAL_LINEA" ColumnName="MONTO_TOTAL_LINEA" />
+                <ScalarProperty Name="SKU_LINEA" ColumnName="SKU_LINEA" />
+                <ScalarProperty Name="F12" ColumnName="F12" />
+                <ScalarProperty Name="TIPO_ABASTECIMIENTO" ColumnName="TIPO_ABASTECIMIENTO" />
+                <ScalarProperty Name="DUP_OC" ColumnName="DUP_OC" />
+                <ScalarProperty Name="DUP_F12" ColumnName="DUP_F12" />
+                <ScalarProperty Name="ESTADO_LINEA" ColumnName="ESTADO_LINEA" />
+                <ScalarProperty Name="ESTADO_ORDEN_OMS" ColumnName="ESTADO_ORDEN_OMS" />
+                <ScalarProperty Name="ESTADO_CD" ColumnName="ESTADO_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datos">
+            <EntityTypeMapping TypeName="TestModel.Datos">
+              <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="OC" ColumnName="OC" />
+                <ScalarProperty Name="F12" ColumnName="F12" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Datos_GetAll" FunctionName="TestModel.Store.Datos_GetAll">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Datos_GetAll_New" FunctionName="TestModel.Store.Datos_GetAll" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestModel.Datos_GetAll_Result">
+                <ScalarProperty Name="OC" ColumnName="OC" />
+                <ScalarProperty Name="F12" ColumnName="F12" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="PRECIO_DESPACHO" ColumnName="PRECIO_DESPACHO" />
+                <ScalarProperty Name="MONTO_TOTAL_LINEA" ColumnName="MONTO_TOTAL_LINEA" />
+                <ScalarProperty Name="SKU_LINEA" ColumnName="SKU_LINEA" />
+                <ScalarProperty Name="TIPO_ABASTECIMIENTO" ColumnName="TIPO_ABASTECIMIENTO" />
+                <ScalarProperty Name="DUP_OC" ColumnName="DUP_OC" />
+                <ScalarProperty Name="DUP_F12" ColumnName="DUP_F12" />
+                <ScalarProperty Name="ESTADO_LINEA" ColumnName="ESTADO_LINEA" />
+                <ScalarProperty Name="ESTADO_ORDEN_OMS" ColumnName="ESTADO_ORDEN_OMS" />
+                <ScalarProperty Name="ESTADO_CD" ColumnName="ESTADO_CD" />
+                <ScalarProperty Name="OC_C" ColumnName="OC_C" />
+                <ScalarProperty Name="F12_C" ColumnName="F12_C" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

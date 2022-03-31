@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cancelaciones">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRECIO_DESPACHO" Type="varchar" MaxLength="50" />
+          <Property Name="MONTO_TOTAL_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="SKU_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="F12" Type="varchar" MaxLength="50" />
+          <Property Name="TIPO_ABASTECIMIENTO" Type="varchar" MaxLength="50" />
+          <Property Name="DUP_OC" Type="varchar" MaxLength="50" />
+          <Property Name="DUP_F12" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_LINEA" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_ORDEN_OMS" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_CD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Datos">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="F12" Type="varchar" MaxLength="50" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="CC" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Test.Test.Users' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" />
+          <Property Name="contrasena" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_crea" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="Cancelaciones" EntityType="Self.Cancelaciones" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="Datos" EntityType="Self.Datos" Schema="Test" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="Test">
+            <DefiningQuery>SELECT 
+    [Users].[id] AS [id], 
+    [Users].[usuario] AS [usuario], 
+    [Users].[contrasena] AS [contrasena], 
+    [Users].[fecha_crea] AS [fecha_crea]
+    FROM [Test].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Users" EntityType="TestModel.User" />
+          <EntitySet Name="Cancelaciones" EntityType="TestModel.Cancelacione" />
+          <EntitySet Name="Datos" EntityType="TestModel.Dato" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_crea" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Cancelacione">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO_DESPACHO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONTO_TOTAL_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SKU_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_ABASTECIMIENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUP_OC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUP_F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_LINEA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_ORDEN_OMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_CD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Dato">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities" >
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TestModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="fecha_crea" ColumnName="fecha_crea" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cancelaciones">
+            <EntityTypeMapping TypeName="TestModel.Cancelacione">
+              <MappingFragment StoreEntitySet="Cancelaciones">
+                <ScalarProperty Name="ESTADO_CD" ColumnName="ESTADO_CD" />
+                <ScalarProperty Name="ESTADO_ORDEN_OMS" ColumnName="ESTADO_ORDEN_OMS" />
+                <ScalarProperty Name="ESTADO_LINEA" ColumnName="ESTADO_LINEA" />
+                <ScalarProperty Name="DUP_F12" ColumnName="DUP_F12" />
+                <ScalarProperty Name="DUP_OC" ColumnName="DUP_OC" />
+                <ScalarProperty Name="TIPO_ABASTECIMIENTO" ColumnName="TIPO_ABASTECIMIENTO" />
+                <ScalarProperty Name="F12" ColumnName="F12" />
+                <ScalarProperty Name="SKU_LINEA" ColumnName="SKU_LINEA" />
+                <ScalarProperty Name="MONTO_TOTAL_LINEA" ColumnName="MONTO_TOTAL_LINEA" />
+                <ScalarProperty Name="PRECIO_DESPACHO" ColumnName="PRECIO_DESPACHO" />
+                <ScalarProperty Name="OC" ColumnName="OC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datos">
+            <EntityTypeMapping TypeName="TestModel.Dato">
+              <MappingFragment StoreEntitySet="Datos">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="F12" ColumnName="F12" />
+                <ScalarProperty Name="OC" ColumnName="OC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
