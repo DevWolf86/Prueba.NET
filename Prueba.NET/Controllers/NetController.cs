@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DbPruebaNet;
 using Prueba.NET.Models;
 
 namespace Prueba.NET.Controllers
